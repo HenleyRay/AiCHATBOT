@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#1F6F8B">
+    <title>Mental Health Support Chat</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <!-- Wellness Tips Carousel -->
+    <div class="wellness-carousel-top">
+        <div class="carousel-header">
+            <h3>💡 Daily Wellness Tip</h3>
+        </div>
+        <div class="carousel-container">
+            <div class="carousel-content">
+                <p id="wellness-tip" class="wellness-text"></p>
+            </div>
+            <div class="carousel-controls">
+                <button id="prev-tip" class="carousel-btn" aria-label="Previous tip">❮</button>
+                <div class="carousel-indicators">
+                    <span id="tip-counter">1 / 7</span>
+                </div>
+                <button id="next-tip" class="carousel-btn" aria-label="Next tip">❯</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <header>
+            <h1>Mental Health Support Chat</h1>
+            <p class="subtitle"><strong>A Chatbot to support your Mental Health.</strong></p>
+        </header>
+
+        <details class="disclaimer" open>
+            <summary><strong>Safety Note</strong> (please read)</summary>
+            <div class="disclaimer-body">
+                <p>This chatbot is not a substitute for professional mental health services.</p>
+                <p>If you are experiencing thoughts of harming yourself or others, please seek immediate assistance.
+                    In the Philippines, call 911 for emergencies.</p>
+                <p class="disclaimer-small">You may also contact the <strong>NCMH Crisis Hotline</strong> at 1553 (landline) or 0917-899-8727 / 0908-639-2672.
+                    Immediate support is available 24/7.</p>
+            </div>
+        </details>
+
+        <div class="chat-container">
+            <div id="chat-messages" class="chat-messages">
+                <div class="message bot-message">
+                    <div class="message-content">
+                        <p>Welcome. You can type a message (even one sentence is enough), or use a quick option below.</p>
+                        <ul>
+                            <li><strong>Support chat</strong> for what you’re going through</li>
+                            <li><strong>PHQ-9 screening</strong> (type “screening” or click “Start screening”)</li>
+                            <li><strong>Practical coping steps</strong> you can try today</li>
+                        </ul>
+                        <p class="hint">Tip: Press <strong>Enter</strong> to send • <strong>Shift + Enter</strong> for a new line</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-input-container">
+                <form id="chat-form">
+                    <textarea
+                        id="user-input" 
+                        placeholder="Type your message here..." 
+                        autocomplete="off"
+                        required
+                        rows="1"
+                    ></textarea>
+                    <button type="submit" id="send-button" aria-label="Send message">Send</button>
+                </form>
+                <div class="quick-actions" aria-label="Quick actions">
+                    <button type="button" class="chip" data-quick-message="I'd like to do a screening.">Start screening</button>
+                    <button type="button" class="chip" data-quick-message="I'm feeling anxious and overwhelmed.">Anxiety support</button>
+                    <button type="button" class="chip" data-quick-message="I'm feeling low and unmotivated.">Low mood support</button>
+                </div>
+            </div>
+
+            <div class="chat-actions">
+                <button id="reset-button" class="action-button">New chat</button>
+                <button id="export-txt" class="action-button" title="Export chat as TXT">Export TXT</button>
+                <button id="export-pdf" class="action-button" title="Export chat as PDF">Export PDF</button>
+            </div>
+        </div>
+
+        <footer>
+            <p><strong>Remember:</strong> Support is available, and your experiences are valid. 💚</p>
+            <p>Taking time to care for your mental health is both responsible and important.</p>
+        </footer>
+        
+        <!-- Philippine Time Clock -->
+        <div id="ph-time-clock" class="ph-time-clock">
+            <div class="time-display">
+                <span id="ph-time">00:00:00</span>
+                <div class="time-label">CLOCK</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Breathing Shortcut Button (left corner) -->
+    <button id="breath-btn" class="breath-btn" aria-haspopup="dialog" aria-controls="breath-modal">🫁 Breathing</button>
+
+    <!-- Breathing Modal -->
+    <div id="breath-modal" class="breath-modal" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="breath-modal-content">
+            <h2 id="breath-title">Guided Breathing</h2>
+            <div id="breath-circle" class="breath-circle" aria-hidden="true"></div>
+            <p id="breath-instruction">Press start to begin a 2-minute breathing exercise.</p>
+            <div class="breath-controls">
+                <button id="start-breath" class="action-button">Start</button>
+                <button id="stop-breath" class="action-button">Stop</button>
+                <button id="close-breath" class="action-button">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/chat.js') }}"></script>
+</body>
+</html>
+
